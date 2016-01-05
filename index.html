@@ -18,23 +18,23 @@
 
 <script>
 function success(position) {
-  // var s = document.querySelector('#status');
+ 
   
-  // if (s.className == 'success') {
-  //   // not sure why we're hitting this twice in FF, I think it's to do with a cached result coming back    
-  //   return;
-  // }
-  
-  // // s.innerHTML = "found you!";
-  // s.className = 'success';
-  
+
+  //Creating HTML5 Canvas
+
   var mapcanvas = document.createElement('div');
   mapcanvas.id = 'mapcanvas';
   mapcanvas.style.height = '800px';
   mapcanvas.style.width = '100%';
     
+
+
+  //Append HTML Canvas for Map
   document.querySelector('article').appendChild(mapcanvas);
-  
+
+
+  //Retreive Data from Google API
   var latlng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   var myOptions = {
     zoom: 6,
@@ -43,8 +43,14 @@ function success(position) {
     navigationControlOptions: {style: google.maps.NavigationControlStyle.SMALL},
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
+
+
+  //Map
   var map = new google.maps.Map(document.getElementById("mapcanvas"), myOptions);
   
+
+
+  //Marker
   var marker = new google.maps.Marker({
       position: latlng, 
       map: map, 
@@ -53,14 +59,15 @@ function success(position) {
 
 
 }
-
-
-if (navigator.geolocation) {
-  navigator.geolocation.getCurrentPosition(success);
-} else {
-  alert('not supported');
-}
-
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success);
+      } else {
+        alert('not supported');
+      }
+//Reference to... 
+//http://html5demos.com/geo
+//http://www.w3schools.com/html/html5_geolocation.asp
+//https://developers.google.com/maps/documentation/geolocation/intro
 </script>
 </section>
 
